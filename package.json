@@ -1,0 +1,24 @@
+{
+  "name": "pinterest",
+  "version": "0.0.0",
+  "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": ".git"
+  },
+  "author": "Mostafa Eweda <mo.eweda@gmail.com>",
+  "dependencies": {
+    "async": "~0.2.8",
+    "body-parser": "^1.16.0",
+    "express": "^3.2.6",
+    "pub": "^0.2.0",
+    "socket.io": "~0.9.14",
+    "stylus": "^0.54.5"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {},
+  "license": "ISC"
+}
