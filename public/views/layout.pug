@@ -1,0 +1,92 @@
+doctype html
+html(lang='en',ng-app="lop")
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='Flavio Ferreira')
+    title Lop Trading Club
+
+    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", rel="stylesheet")
+    link(rel="stylesheet",href="/public/css/main.css")
+
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload-all.min.js")
+    script(src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js")
+    script(src="/public/js/angular-masonry.js")
+    script(src="/public/js/imagesloaded.pkgd.min.js")
+    script(src="/public/js/main.js")
+
+  body(ng-controller="LopController as lopCtrl")
+    div
+      .navbar.navbar-default(role="navigation")
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href="#") LopTerest
+            
+            
+          .navbar-collapse.collapse
+            ul.nav.navbar-nav.navbar-right
+              li(ng-hide="lopCtrl.user.logged")
+                a(ng-click="lopCtrl.loginUser()")
+                  img#twitterB.img-responsive(src="http://pbvusd.schoolwires.net/cms/lib07/CA01902269/Centricity/Domain/62/twitter-login.gif")
+              li.dropdown(ng-show="lopCtrl.user.logged")
+                a(data-toggle="modal",href="#newLopModal") Add new Lop
+                
+              li.pointer(ng-show="lopCtrl.user.logged  && ! lopCtrl.delete")
+                a(ng-click="lopCtrl.myLops()") My Lops
+              li.pointer.allLops(ng-show="lopCtrl.user.logged  && lopCtrl.delete")
+                a(ng-click="lopCtrl.allLops()") All Lops
+              li.pointer(ng-show="lopCtrl.user.logged")
+                a(ng-click="lopCtrl.signOutUser()") Sign Out
+                
+                
+    <!-- New Lop Modal -->
+    .modal.fade(id="newLopModal",tabindex="-1",role="dialog", aria-labelledby="myModalLabel")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+            button.close(ng-show="lopCtrl.delete" type="button" ,data-dismiss="modal",aria-label="Close") x
+            h4.modal-title(id="myModalLabel") New Lop
+          .modal-body
+            form(name="newLopForm", enctype="multipart/form-data", novalidate, ng-submit="newLopForm.$valid && lopCtrl.addLop()" )
+              .form-group
+                label(for="descr") Description
+                input.form-control(type="text", name="descr", ng-model="lopCtrl.lop.descr",placeholder="Description...")
+              .form-group
+                label(for="image") Image URL
+                input.form-control(type="text", name="image", ng-model="lopCtrl.lop.image", placeholder="Image from web...")
+                label(for="imagefile") or upload a file
+                input.form-control(type="file", ngf-select ng-model="lopCtrl.lop.picFile" name="file" ngf-pattern="'image/*'"
+                 ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="100" 
+                 ngf-resize="{width: 100, height: 100}" ngf-model-invalid="errorFile")
+                i(ng-show="newLopForm.file.$error.required") *required
+                i(ng-show="newLopForm.file.$error.maxSize") File too large {{errorFile.size / 1000000|number:1}}MB: max 2M
+                br
+                img.img-responsive(ng-show="newLopForm.file.$valid" ngf-thumbnail="lopCtrl.lop.picFile")
+                img.img-responsive(ng-show="newLopForm.file.$valid" ngf-thumbnail="lopCtrl.lop.image")
+              .modal-footer
+                button.btn.btn-default(type="button", data-dismiss="modal") Cancel
+                button.btn.btn-primary(type="submit") Save
+    <!-- Message Modal -->
+    .modal.fade(id="msgModal",tabindex="-1",role="dialog", aria-labelledby="myModalLabel")
+      .modal-dialog.modal-sm(role="document")
+        .modal-content
+          .modal-header
+            button.close(type="button" ,data-dismiss="modal",aria-label="Close") x
+            h4.modal-title(id="myModalLabel") Message
+          .modal-body
+            div#msg
+          .modal-footer
+             button.btn.btn-default(type="button",data-dismiss="modal") Ok
+      
+
+block content

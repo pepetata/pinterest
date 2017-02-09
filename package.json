@@ -9,16 +9,23 @@
   },
   "author": "Mostafa Eweda <mo.eweda@gmail.com>",
   "dependencies": {
+    "angular-masonry": "^0.16.0",
     "async": "~0.2.8",
     "body-parser": "^1.16.0",
-    "express": "^3.2.6",
+    "express": "^4.14.1",
+    "formidable": "^1.1.1",
+    "mongodb": "^2.2.22",
     "pub": "^0.2.0",
+    "pug": "^2.0.0-beta11",
+    "social-oauth-client": "^0.1.6",
     "socket.io": "~0.9.14",
     "stylus": "^0.54.5"
   },
   "scripts": {
     "start": "node server.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "angular-images-loaded": "^0.2.5"
+  },
   "license": "ISC"
 }

@@ -1,0 +1,54 @@
+footer {
+  font-style: italic;
+}
+
+#twitterB {
+    height: 25px;
+}
+
+.masonry-brick{
+	margin-bottom: 10px;
+}
+.lop {
+	border-style: solid;
+    border: 1px;
+    padding: 4px;
+    margin: 2px;
+    background-color: lightgoldenrodyellow;
+}
+#pic {
+	 max-width: 180;
+	 word-wrap: break-word;
+	 white-space: normal;
+
+}
+.lop img {
+	border-radius: 8px;
+	max-width: 190px;
+}
+.lop p {
+	text-align: center;
+	 word-wrap: break-word;
+}
+#userpic, #like {
+	max-height: 25px;
+	height: 25px;
+}
+#userpic {
+	float: left;
+}
+.lop a {
+	float: right;
+}
+.pointer {
+    cursor: pointer;
+}
+.allLops {
+	background-color: orange;
+}
+.delete {
+    color: red;
+    position: absolute;
+    bottom: 25px;
+    right: 6px;
+}

@@ -1,0 +1,30 @@
+extends layout.pug
+
+block content
+  .container
+    div(masonry reload-on-resize column-width="100")
+      div.masonry-brick(ng-repeat="lop in lopCtrl.lops | filter :  (!lopCtrl.delete || '') && { user: lopCtrl.user.id }")
+        div.lop
+          div#pic
+            img.center-block(ng-src="{{lop.imagesrc}}")
+            | {{lop.descr}}
+            button.close.delete(ng-show="lopCtrl.delete" type="button"  ng-click="lopCtrl.deleteLop(lop)") x
+          div#user
+            img#userpic(ng-src="{{lop.userpic}}")
+            a.pointer(ng-click="lopCtrl.like(lop)")
+              img#like(ng-src="http://redsgn.co/wp-content/uploads/2015/11/1189-new-name-and-icon-for-Twitter-like-after.jpg")
+              |  {{lop.likes}}
+
+  footer
+    br
+    br
+    br
+    p Running on Node.js with Express, MongoDB, Jade, Stylus and AngularJS
+    p Inspired by Flavio Ferreira
+  
+  
+  <div masonry>
+      <div class="masonry-brick" ng-repeat="brick in bricks">
+          <img ng-src="{{ brick.src }}" alt="A masonry brick">
+      </div>
+  </div>
